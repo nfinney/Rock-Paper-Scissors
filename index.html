@@ -11,7 +11,7 @@
             
             switch(Math.floor(Math.random() * 3)) { //returns a random int from 0 to 2
                 case 0:
-                    computerString = "Rock";
+                    computerString = "computerSelection";
                     break;
                 case 1:
                     computerString = "Scissors";
@@ -26,13 +26,48 @@
 
 
         function playRound(playerSelection, computerSelection) {
-            // your code here!
+
+            playerSelection = capitalize(playerSelection); // capitize the player's input (computer's is already handled in computerPlay function)
+
+            if(playerSelection == "Rock"){
+                if(computerSelection == "Rock"){
+                    return "Tie Game. You both threw " + computerSelection;
+                } else if(computerSelection == "Scissors") {
+                    return "You Win! " + playerSelection + " beats " + computerSelection;
+                } else if(computerSelection == "Paper") {
+                    return "You Lose! " + computerSelection + " beats " + playerSelection;
+                } else {
+                    return "Game is Broken";
+                }
+            } else if (playerSelection == "Scissors") {
+                if(computerSelection == "Rock"){
+                    return "You Lose! " + computerSelection + " beats " + playerSelection;
+                } else if(computerSelection == "Scissors") {
+                    return "Tie Game. You both threw " + computerSelection;
+                } else if(computerSelection == "Paper") {
+                    return "You Win! " + playerSelection + " beats " + computerSelection;
+                } else {
+                    return "Game is Broken";
+                }
+            } else if (playerSelection == "Paper") {
+                if(computerSelection == "Rock"){
+                    return "You Win! " + playerSelection + " beats " + computerSelection;
+                } else if(computerSelection == "Scissors") {
+                    return "You Lose! " + computerSelection + " beats " + playerSelection;
+                } else if(computerSelection == "Paper") {
+                    return "Tie Game. You both threw " + computerSelection;
+                } else {
+                    return "Game is Broken";
+                }
+            } else {
+                return "Game is Broken";
+            }
         }
 
 
         function capitalize(stringInput) {
             stringInput = stringInput.toLowerCase();
-            return stringInput.charAt(0).toUpperCase() + stringInput.slice(1);
+            stringInput = stringInput.charAt(0).toUpperCase() + stringInput.slice(1);
         }
 
     </script>
