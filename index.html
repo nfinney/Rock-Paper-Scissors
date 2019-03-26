@@ -6,12 +6,15 @@
 
     <script>
 
+        var userGamesWon = 0; //counter to keep track of total games user won
+        var computerGamesWon = 0;
+
         function computerPlay(){
-            let computerString = null; 
+            var computerString = null; 
             
             switch(Math.floor(Math.random() * 3)) { //returns a random int from 0 to 2
                 case 0:
-                    computerString = "computerSelection";
+                    computerString = "Rock";
                     break;
                 case 1:
                     computerString = "Scissors";
@@ -33,27 +36,33 @@
                 if(computerSelection == "Rock"){
                     return "Tie Game. You both threw " + computerSelection;
                 } else if(computerSelection == "Scissors") {
+                    userGamesWon++;
                     return "You Win! " + playerSelection + " beats " + computerSelection;
                 } else if(computerSelection == "Paper") {
                     return "You Lose! " + computerSelection + " beats " + playerSelection;
+                    computerGamesWon++;
                 } else {
                     return "Game is Broken";
                 }
             } else if (playerSelection == "Scissors") {
                 if(computerSelection == "Rock"){
                     return "You Lose! " + computerSelection + " beats " + playerSelection;
+                    computerGamesWon++;
                 } else if(computerSelection == "Scissors") {
                     return "Tie Game. You both threw " + computerSelection;
                 } else if(computerSelection == "Paper") {
+                    userGamesWon++;
                     return "You Win! " + playerSelection + " beats " + computerSelection;
                 } else {
                     return "Game is Broken";
                 }
             } else if (playerSelection == "Paper") {
                 if(computerSelection == "Rock"){
+                    userGamesWon++;
                     return "You Win! " + playerSelection + " beats " + computerSelection;
                 } else if(computerSelection == "Scissors") {
                     return "You Lose! " + computerSelection + " beats " + playerSelection;
+                    computerGamesWon++;
                 } else if(computerSelection == "Paper") {
                     return "Tie Game. You both threw " + computerSelection;
                 } else {
@@ -64,39 +73,34 @@
             }
         }
 
+        
+
 
         function game() {
             for(i=0; i<5; i++) {
-                let totalGamesPlayed = 0; //counter to keep track of total games played
-                let userGamesWon = 0; //counter to keep track of total games user won
-                
-                let userInput = prompt("Please choose and type 'Rock,' 'Scissors,' or 'Paper.'");
+                                
+                var userInput = prompt("Please choose and type 'Rock,' 'Scissors,' or 'Paper.'");
                 // userInput = capitalize(userInput); //bring userInput to lowercase and then capitalize first letter
                 
-                userInput = validateUserInput(userInput); 
+                userInput = capitalize(userInput); 
                 //make sure the user has entered the words, Rock, paper, or scissor. If not make them re-enter until they do
 
                 console.log(playRound(userInput, computerPlay()));
+                // console.log("Games won: " + userGamesWon);
+                // console.log("Games played: " + (i+1));
                 
             }
+
+            console.log(whoWon());
         }
 
-        function validateUserInput(userInput) {
-            userInput = capitalize(userInput); //bring userInput to lowercase and then capitalize first letter
-
-            if(userInput == "Rock" || userInput == "Scissors" || userInput == "Paper") {
-                return userInput;
-            } else {
-                userInput = prompt("Please choose and type 'Rock,' 'Scissors,' or 'Paper.'");
-                validateUserInput(userInput);
-            }
-        }
-
-
+        
         function capitalize(stringInput) {
             stringInput = stringInput.toLowerCase();
-            stringInput = stringInput.charAt(0).toUpperCase() + stringInput.slice(1);
+            return stringInput.charAt(0).toUpperCase() + stringInput.slice(1);
         }
+
+        game(); //call the game funtion
 
     </script>
 
