@@ -39,15 +39,15 @@
                     userGamesWon++;
                     return "You Win! " + playerSelection + " beats " + computerSelection;
                 } else if(computerSelection == "Paper") {
-                    return "You Lose! " + computerSelection + " beats " + playerSelection;
                     computerGamesWon++;
+                    return "You Lose! " + computerSelection + " beats " + playerSelection;
                 } else {
                     return "Game is Broken";
                 }
             } else if (playerSelection == "Scissors") {
                 if(computerSelection == "Rock"){
-                    return "You Lose! " + computerSelection + " beats " + playerSelection;
                     computerGamesWon++;
+                    return "You Lose! " + computerSelection + " beats " + playerSelection;
                 } else if(computerSelection == "Scissors") {
                     return "Tie Game. You both threw " + computerSelection;
                 } else if(computerSelection == "Paper") {
@@ -61,8 +61,8 @@
                     userGamesWon++;
                     return "You Win! " + playerSelection + " beats " + computerSelection;
                 } else if(computerSelection == "Scissors") {
-                    return "You Lose! " + computerSelection + " beats " + playerSelection;
                     computerGamesWon++;
+                    return "You Lose! " + computerSelection + " beats " + playerSelection;
                 } else if(computerSelection == "Paper") {
                     return "Tie Game. You both threw " + computerSelection;
                 } else {
@@ -74,6 +74,15 @@
         }
 
         
+        function whoWon(){
+            if(userGamesWon>computerGamesWon) {
+                return "Congrats, you won! You won " + userGamesWon + " out of 5 games. The computer won " + computerGamesWon + " game(s).";
+            } else if(userGamesWon == computerGamesWon) {
+                return "You tied with the computer"
+            } else {
+                return "Sorry, but you lose. The computer won " + computerGamesWon + " out of 5 games. You won " + userGamesWon + " game(s).";
+            }
+        }
 
 
         function game() {
