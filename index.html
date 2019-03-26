@@ -27,7 +27,7 @@
 
         function playRound(playerSelection, computerSelection) {
 
-            playerSelection = capitalize(playerSelection); // capitize the player's input (computer's is already handled in computerPlay function)
+            // playerSelection = capitalize(playerSelection); // capitize the player's input (computer's is already handled in computerPlay function)
 
             if(playerSelection == "Rock"){
                 if(computerSelection == "Rock"){
@@ -61,6 +61,34 @@
                 }
             } else {
                 return "Game is Broken";
+            }
+        }
+
+
+        function game() {
+            for(i=0; i<5; i++) {
+                let totalGamesPlayed = 0; //counter to keep track of total games played
+                let userGamesWon = 0; //counter to keep track of total games user won
+                
+                let userInput = prompt("Please choose and type 'Rock,' 'Scissors,' or 'Paper.'");
+                // userInput = capitalize(userInput); //bring userInput to lowercase and then capitalize first letter
+                
+                userInput = validateUserInput(userInput); 
+                //make sure the user has entered the words, Rock, paper, or scissor. If not make them re-enter until they do
+
+                console.log(playRound(userInput, computerPlay()));
+                
+            }
+        }
+
+        function validateUserInput(userInput) {
+            userInput = capitalize(userInput); //bring userInput to lowercase and then capitalize first letter
+
+            if(userInput == "Rock" || userInput == "Scissors" || userInput == "Paper") {
+                return userInput;
+            } else {
+                userInput = prompt("Please choose and type 'Rock,' 'Scissors,' or 'Paper.'");
+                validateUserInput(userInput);
             }
         }
 
